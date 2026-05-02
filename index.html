@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>HiTec Shoes — Premium Footwear | Sri Lanka</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F3EFFC;   /* light purple / lavender background */
+      color: #1E1A2F;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* modern purple palette */
+    :root {
+      --primary: #5B3A8C;      /* rich dark purple for headers/brand */
+      --primary-dark: #3A2463;
+      --primary-soft: #7C5EAA;
+      --secondary: #E87A4D;     /* warm accent */
+      --accent: #F0C45A;
+      --gray-bg: #F0EBFA;
+      --card-white: #FFFFFF;
+      --text-dark: #2B2440;
+      --text-muted: #5E527A;
+      --shadow-sm: 0 5px 18px rgba(0,0,0,0.04), 0 2px 5px rgba(0,0,0,0.03);
+      --shadow-md: 0 12px 28px rgba(0,0,0,0.08);
+      --radius-card: 24px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* typography */
+    h1, h2, h3, .logo {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-dark);
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 2.3rem;
+      margin-bottom: 14px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-subhead {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 36px;
+    }
+
+    /* buttons & nav */
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #D9CDED;
+      padding: 11px 26px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--text-dark);
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: rgba(91,58,140,0.06);
+    }
+
+    /* navbar DARK PURPLE */
+    nav {
+      background: var(--primary-dark);
+      backdrop-filter: blur(0);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 14px 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #F2EBFF;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #F2EBFF;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #E3D9FC;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #FFE5B4;
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: white;
+    }
+    .mobile-menu {
+      display: none;
+    }
+
+    /* hero section */
+    .hero {
+      padding: 70px 0 80px;
+      background: linear-gradient(115deg, #F5F0FF 0%, #FFFFFF 100%);
+    }
+    .hero-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-left {
+      flex: 1.2;
+    }
+    .hero-badge {
+      background: #E9E2FC;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .hero-highlight {
+      color: var(--secondary);
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .hero-right {
+      flex: 1;
+      background: var(--card-white);
+      border-radius: 36px;
+      box-shadow: var(--shadow-md);
+      padding: 24px 20px;
+      text-align: center;
+      border: 1px solid #E6DEF5;
+    }
+    .shoe-showcase {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .shoe-card-sm {
+      background: var(--gray-bg);
+      border-radius: 24px;
+      padding: 18px 12px;
+      width: 130px;
+      transition: 0.2s;
+      text-align: center;
+    }
+    .shoe-card-sm img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      background: #E3D9FC;
+    }
+    .shoe-emoji {
+      font-size: 3rem;
+      display: block;
+    }
+
+    /* stats */
+    .stats-row {
+      display: flex;
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .stat-item {
+      border-left: 3px solid var(--secondary);
+      padding-left: 16px;
+    }
+    .stat-number {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    /* categories */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid #E3DAF5;
+    }
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 28px;
+      margin-top: 32px;
+    }
+    .cat-card {
+      background: var(--card-white);
+      border-radius: var(--radius-card);
+      padding: 24px 12px;
+      text-align: center;
+      transition: 0.25s;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #E9E0F5;
+      cursor: pointer;
+    }
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+      border-color: var(--primary);
+    }
+    .cat-img-place {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 14px;
+      background: #F2EDFC;
+      border-radius: 60%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .cat-img-place img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .fallback-icon {
+      font-size: 2.8rem;
+    }
+
+    /* brands pill */
+    .brands-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 32px 0 16px;
+    }
+    .brand-pill {
+      background: white;
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid #D9CDED;
+      color: #3A2B55;
+      transition: 0.1s;
+    }
+
+    /* why us grid */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .why-card {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 28px 22px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #EFE8FC;
+    }
+
+    /* products section */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .product-card {
+      background: var(--card-white);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.25s;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #E8E0F5;
+    }
+    .product-img {
+      background: #F7F3FF;
+      padding: 0;
+      text-align: center;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--secondary);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 40px;
+      z-index: 2;
+    }
+    .product-info {
+      padding: 18px 18px 22px;
+    }
+    .product-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .price {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-top: 8px;
+    }
+    .old-price {
+      font-size: 0.85rem;
+      color: #8A7BA8;
+      text-decoration: line-through;
+      margin-left: 8px;
+      font-weight: 400;
+    }
+
+    /* tabs */
+    .tabs-wrap {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #E2D9F2;
+      padding-bottom: 12px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 8px 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: var(--text-muted);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* locations */
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      margin-top: 40px;
+    }
+    .location-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #EBE2FA;
+    }
+
+    /* contact form */
+    .contact-row {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .contact-form {
+      flex: 1.4;
+      background: white;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-info {
+      flex: 1;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 1px solid #DCD0F0;
+      font-family: inherit;
+      background: white;
+    }
+    .form-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    footer {
+      background: #2D1F4C;   /* dark purple footer */
+      color: #D8CEF0;
+      padding: 50px 0 30px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 40px;
+    }
+
+    @media (max-width: 780px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu.open { display: flex; flex-direction: column; background: var(--primary-dark); position: absolute; top: 70px; left: 0; width: 100%; padding: 24px; gap: 16px; z-index: 99; }
+      .mobile-menu a { color: white; text-decoration: none; font-weight: 500; }
+      h1 { font-size: 2.4rem; }
+      .hero-grid { flex-direction: column; }
+      .stats-row { flex-wrap: wrap; }
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2D1F4C;
+      color: white;
+      padding: 12px 26px;
+      border-radius: 60px;
+      font-weight: 500;
+      opacity: 0;
+      transition: 0.2s;
+      pointer-events: none;
+      z-index: 999;
+      font-size: 0.9rem;
+    }
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.2s;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-container">
+    <div class="logo">HiTec 👟 Footwear</div>
+    <div class="nav-links">
+      <a href="#categories">Shop</a>
+      <a href="#brands">Brands</a>
+      <a href="#products">Collections</a>
+      <a href="#locations">Stores</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn-primary" style="background:#F0C45A; color:#2D1F4C; padding:8px 20px;">Visit store →</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#categories">Categories</a>
+    <a href="#brands">Brands</a>
+    <a href="#products">Products</a>
+    <a href="#locations">Stores</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <span class="hero-badge">⭐ Since 2022 | Trusted in LK</span>
+        <h1>Step into <span class="hero-highlight">real comfort</span><br>Premium footwear,<br>Sri Lanka's choice.</h1>
+        <p style="font-size: 1.05rem; color: #4C3E6B; max-width: 520px; margin-bottom: 32px;">From Minuwangoda to Hettipola — authentic brands, expert fitting, and genuine service. Walk in confidence.</p>
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-number">2</div><div>Stores</div></div>
+          <div class="stat-item"><div class="stat-number">500+</div><div>Styles</div></div>
+          <div class="stat-item"><div class="stat-number">100%</div><div>Authentic</div></div>
+        </div>
+        <div style="display: flex; gap: 16px; margin-top: 28px;">
+          <a href="#products" class="btn-primary">Explore shoes →</a>
+          <a href="#locations" class="btn-outline">📍 Find nearest store</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="shoe-showcase">
+          <!-- SHOWCASE IMAGES will appear if you upload shoes1.jpg etc. -->
+          <div class="shoe-card-sm">
+            <img src="shoes1.jpg" alt="Executive" onerror="this.src='https://placehold.co/100x100?text=👞'; this.style.background='#E9E2FC';">
+            <div>Executive</div>
+          </div>
+          <div class="shoe-card-sm">
+            <img src="shoes.jpg" alt="Elegance" onerror="this.src='https://placehold.co/100x100?text=👠'; this.style.background='#E9E2FC';">
+            <div>Elegance</div>
+          </div>
+          <div class="shoe-card-sm">
+            <img src="shoes3.jpg" alt="Sport" onerror="this.src='https://placehold.co/100x100?text=👟'; this.style.background='#E9E2FC';">
+            <div>Sport</div>
+          </div>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.85rem; color:#6A5A8E;">✨ Over 15 top brands — Nike, Adidas, Clarks, Skechers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP BY CATEGORY with images -->
+  <section id="categories" class="section">
+    <div class="container">
+      <h2>Shop by category</h2>
+      <div class="section-subhead">Find the perfect fit for every family member — upload your own images</div>
+      <div class="cats-grid">
+        <div class="cat-card" data-cat="men">
+          <div class="cat-img-place"><img src="shoe1.jpg" alt="Men shoes" onerror="this.src='https://placehold.co/90x90?text=👞';"></div>
+          <h3>Men’s</h3><p>formal, casual, sneakers</p>
+        </div>
+        <div class="cat-card" data-cat="women">
+          <div class="cat-img-place"><img src="shoe2.jpg" alt="Women shoes" onerror="this.src='https://placehold.co/90x90?text=👠';"></div>
+          <h3>Women’s</h3><p>heels, flats, sandals</p>
+        </div>
+        <div class="cat-card" data-cat="kids">
+          <div class="cat-img-place"><img src="shoe3.jpg" alt="Kids shoes" onerror="this.src='https://placehold.co/90x90?text=👟';"></div>
+          <h3>Kids’</h3><p>school, sport, casual</p>
+        </div>
+        <div class="cat-card" data-cat="sleepers">
+          <div class="cat-img-place"><img src="shoe4.jpg" alt="Sleepers" onerror="this.src='https://placehold.co/90x90?text=🩴';"></div>
+          <h3>Sleepers & Slides</h3><p>indoor & beach</p>
+        </div>
+        <div class="cat-card" data-cat="sports">
+          <div class="cat-img-place"><img src="shoe5.jpg" alt="Sports" onerror="this.src='https://placehold.co/90x90?text=🏃';"></div>
+          <h3>Sports</h3><p>running & training</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS section (✨ Over 15 top brands) -->
+  <section id="brands" class="section" style="background: var(--gray-bg);">
+    <div class="container">
+      <h2>✨ Over 15 top brands — Nike, Adidas, Clarks, Skechers</h2>
+      <div class="brands-flex">
+        <span class="brand-pill">Nike</span><span class="brand-pill">Adidas</span><span class="brand-pill">Puma</span><span class="brand-pill">Clarks</span>
+        <span class="brand-pill">Skechers</span><span class="brand-pill">Bata</span><span class="brand-pill">Woodland</span><span class="brand-pill">Reebok</span>
+        <span class="brand-pill">New Balance</span><span class="brand-pill">Vans</span><span class="brand-pill">Converse</span><span class="brand-pill">Dr. Martens</span>
+        <span class="brand-pill">Asics</span><span class="brand-pill">Crocs</span><span class="brand-pill">Birkenstock</span>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9rem; color: #5E527A;">✨ Elite selection — 100% authentic, sourced directly from global partners.</p>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section class="section">
+    <div class="container">
+      <h2>The HiTec difference</h2>
+      <div class="why-grid">
+        <div class="why-card"><div style="background:#F1EBFF; width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;">🔐</div><h3 style="margin:14px 0 6px;">100% genuine</h3><p>All products sourced directly from authorized distributors, guaranteed authentic.</p></div>
+        <div class="why-card"><div style="background:#F1EBFF; width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;">💰</div><h3 style="margin:14px 0 6px;">Best price promise</h3><p>Competitive rates, seasonal sales & bundle deals across Sri Lanka.</p></div>
+        <div class="why-card"><div style="background:#F1EBFF; width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;">🚚</div><h3 style="margin:14px 0 6px;">Islandwide delivery</h3><p>Express shipping from Minuwangoda & Hettipola to your doorstep.</p></div>
+        <div class="why-card"><div style="background:#F1EBFF; width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;">👨‍👩‍👧‍👦</div><h3 style="margin:14px 0 6px;">All ages welcome</h3><p>Family footwear specialists — from toddlers to grandparents.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- products with image placeholders -->
+  <section id="products" class="section" style="background: #FFFFFF;">
+    <div class="container">
+      <h2>Latest drops & bestsellers</h2>
+      <div class="tabs-wrap" id="tabWrapper">
+        <button class="tab-btn active" data-filter="all">All</button>
+        <button class="tab-btn" data-filter="men">Men</button>
+        <button class="tab-btn" data-filter="women">Women</button>
+        <button class="tab-btn" data-filter="kids">Kids</button>
+        <button class="tab-btn" data-filter="sleepers">Sleepers</button>
+        <button class="tab-btn" data-filter="sports">Sports</button>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+      <div style="text-align:center; margin-top: 40px;"><a href="#contact" class="btn-outline">Request full catalog →</a></div>
+    </div>
+  </section>
+
+  <!-- locations -->
+  <section id="locations" class="section" style="background: var(--gray-bg);">
+    <div class="container">
+      <h2>Find your nearest HiTec store</h2>
+      <div class="location-grid">
+        <div class="location-card"><span style="background:#E5DDF5;padding:5px 12px;border-radius:100px;font-size:0.7rem;font-weight:700;">⭐ HEAD OFFICE</span><h3 style="margin:16px 0 8px;">Minuwangoda</h3><p>📍 Main street, Minuwangoda, Western Province<br>🕒 Mon–Sat 8:30AM–7PM | Sun 10AM–5PM<br>📞 +94 77 123 4567<br>✉️ info@hitec.lk</p><a href="#" style="color:var(--primary);font-weight:600;display:inline-block;margin-top:16px;">Get directions →</a></div>
+        <div class="location-card"><span style="background:#E5DDF5;padding:5px 12px;border-radius:100px;font-size:0.7rem;">🏪 BRANCH</span><h3 style="margin:16px 0 8px;">Hettipola</h3><p>📍 Kurunegala road, Hettipola town<br>🕒 Mon–Sat 9AM–7PM | Sun 9:30AM–5PM<br>📞 +94 66 234 5678<br>✉️ hettipola@hitec.lk</p><a href="#" style="color:var(--primary);font-weight:600;display:inline-block;margin-top:16px;">Get directions →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Send us a message</h2>
+      <div class="contact-row">
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Last name" required>
+          </div>
+          <input type="email" placeholder="Email address" required style="margin-bottom:16px;">
+          <input type="tel" placeholder="Phone number" style="margin-bottom:16px;">
+          <select style="margin-bottom:16px;">
+            <option>I'm interested in...</option><option>Men’s shoes</option><option>Women’s footwear</option><option>Kids’ collection</option><option>Sleepers / slippers</option><option>Wholesale / bulk</option>
+          </select>
+          <textarea rows="4" placeholder="Tell us what you're looking for..."></textarea>
+          <button type="submit" class="btn-primary" style="margin-top: 22px; width:100%; justify-content:center;">Send enquiry ✉️</button>
+        </form>
+        <div class="contact-info">
+          <div style="margin-bottom: 28px;"><h3 style="font-size:1.5rem;">We reply within hours</h3><p>Our footwear experts are ready to help you choose the right pair, check stock, or arrange delivery.</p></div>
+          <div><strong>📞 Call us:</strong> +94 112 345 678</div>
+          <div style="margin: 12px 0;"><strong>📧 Email:</strong> hello@hitecshoes.lk</div>
+          <div><strong>💬 WhatsApp business</strong> +94 77 555 4321</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><div style="font-weight:800;font-size:1.5rem;">HiTec Shoes</div><p style="margin-top:12px;">Premium footwear distributor, Sri Lanka. Est.2022, family owned.</p></div>
+    <div><h4>Explore</h4><ul style="list-style:none; margin-top:8px;"><li>New arrivals</li><li>Men's collection</li><li>Women's collection</li><li>Kids zone</li></ul></div>
+    <div><h4>Support</h4><ul style="list-style:none;"><li>Size guide</li><li>Exchange policy</li><li>Track order</li><li>Wholesale</li></ul></div>
+    <div><h4>Follow us</h4><div style="display:flex; gap:10px; margin-top:8px;">IG | FB | TikTok</div></div>
+  </div>
+  <div class="container" style="text-align:center; margin-top:40px; border-top:1px solid #4B3A72; padding-top:24px;">© 2025 HiTec Shoes – real comfort. Minuwangoda & Hettipola. Human crafted experience.</div>
+</footer>
+<button class="scroll-top" id="scrollTopBtn">↑</button>
+<div id="toastMsg" class="toast-msg">✓ Message received. Our team will contact you soon.</div>
+
+<script>
+  // PRODUCT CATALOG with image names
+  const productCatalog = [
+    { id:1, name:"Torino Leather Oxford", cat:"men", img:"shoe-p1.jpg", tag:"bestseller", price:"Rs. 5,200", old:"Rs. 7,200" },
+    { id:2, name:"Spectra Runner 2.0", cat:"sports", img:"shoe-p2.jpg", tag:"new", price:"Rs. 6,800", old:"Rs. 9,500" },
+    { id:3, name:"Coastline Loafer", cat:"men", img:"shoe-p3.jpg", tag:"", price:"Rs. 3,990", old:"Rs. 5,290" },
+    { id:4, name:"Aurora Stiletto", cat:"women", img:"shoe-p4.jpg", tag:"limited", price:"Rs. 7,200", old:"Rs. 9,900" },
+    { id:5, name:"CloudWalker Flat", cat:"women", img:"shoe-p5.jpg", tag:"comfort", price:"Rs. 3,500", old:"Rs. 4,990" },
+    { id:6, name:"Summit Block Heel", cat:"women", img:"shoe-p6.jpg", tag:"trending", price:"Rs. 4,450", old:"Rs. 6,200" },
+    { id:7, name:"Junior Raptor (school)", cat:"kids", img:"shoe-p7.jpg", tag:"durable", price:"Rs. 2,650", old:"Rs. 3,500" },
+    { id:8, name:"Little Hero Sneaker", cat:"kids", img:"shoe-p8.jpg", tag:"", price:"Rs. 2,290", old:"Rs. 3,100" },
+    { id:9, name:"Wave Sleeper Pro", cat:"sleepers", img:"shoe-p9.jpg", tag:"soft-step", price:"Rs. 1,450", old:"Rs. 2,200" },
+    { id:10, name:"Bali Slide Easy", cat:"sleepers", img:"shoe-p10.jpg", tag:"", price:"Rs. 990", old:"Rs. 1,490" },
+    { id:11, name:"Endurance Max (run)", cat:"sports", img:"shoe-p11.jpg", tag:"cushion", price:"Rs. 7,200", old:"Rs. 10,000" },
+    { id:12, name:"Kids Starflex", cat:"kids", img:"shoe-p12.jpg", tag:"school", price:"Rs. 1,990", old:"Rs. 2,800" }
+  ];
+
+  function renderProducts(filter) {
+    const grid = document.getElementById('productsGrid');
+    let filtered = filter === 'all' ? productCatalog : productCatalog.filter(p => p.cat === filter);
+    if (filtered.length === 0) filtered = productCatalog.slice(0,4);
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="product-img">
+          ${p.tag ? `<div class="product-badge">${p.tag}</div>` : ''}
+          <img src="${p.img}" alt="${p.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=${p.emoji ? p.emoji : '👟'}&bg=F3EFFC'; this.style.objectFit='contain'; this.style.padding='20px';">
+        </div>
+        <div class="product-info">
+          <div class="product-title">${p.name}</div>
+          <div class="price">${p.price} <span class="old-price">${p.old}</span></div>
+          <button class="btn-outline" style="margin-top:12px; padding:6px 16px; font-size:0.8rem;" onclick="enquireProduct('${p.name}')">Enquire now</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.enquireProduct = (name) => { showToast(`✨ "${name}" added to enquiry list. We'll message you!`); };
+  function showToast(msg) { const toast = document.getElementById('toastMsg'); toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2700); }
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts(btn.getAttribute('data-filter'));
+    });
+  });
+  renderProducts('all');
+
+  document.querySelectorAll('.cat-card').forEach(card => {
+    card.addEventListener('click', () => {
+      let cat = card.getAttribute('data-cat');
+      if (!cat) cat = "all";
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('data-filter') === cat);
+      if (targetBtn) targetBtn.click();
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('#mobileMenu a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+
+  document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); showToast("📨 Message sent! Our team will get back to you (real response within 24h)."); e.target.reset(); });
+
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => { scrollBtn.style.opacity = window.scrollY > 400 ? '1' : '0'; });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== "#") { const target = document.querySelector(targetId); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); } }
+    });
+  });
+</script>
+</body>
+</html>
